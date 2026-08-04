@@ -74,6 +74,15 @@ app = FastAPI(title="Urban Landscape API")
 api = APIRouter(prefix="/api")
 security = HTTPBearer(auto_error=False)
 
+@app.get("/")
+@app.head("/")
+async def root_health():
+    return {"status": "ok", "app": "Urban Landscape API"}
+
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy"}
+
 def now_iso():
     return datetime.now(timezone.utc).isoformat()
 
