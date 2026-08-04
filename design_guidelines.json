@@ -1,0 +1,118 @@
+{
+  "theme": "light",
+  "design_aesthetic": "Earthy Brutalism / Architectural Authority",
+  "brand_tone": "Legacy, Masterful, Precision, Structural Excellence, Premium.",
+  "concept": "A fresh distinctive modern take replacing the old dark luxury theme with a structural, light-themed 'Architectural Brutalism' mixed with earthy warmth. It balances the stark, precise reality of engineering with the organic warmth of landscapes and interiors.",
+  "colors": {
+    "background": {
+      "default": "#F4F3EF",
+      "card": "#FFFFFF",
+      "alt": "#EAE7DF"
+    },
+    "text": {
+      "primary": "#1A1A1A",
+      "secondary": "#5C5C5C",
+      "muted": "#8A8A8A"
+    },
+    "brand": {
+      "primary": "#C55B43",
+      "secondary": "#4A5D4E",
+      "accent": "#2B3A41"
+    },
+    "states": {
+      "success": "#3E664F",
+      "warning": "#D48B31",
+      "error": "#B83A3A",
+      "info": "#3A6186"
+    },
+    "rules": [
+      "Avoid completely flat whites; use 'Bone-white' or 'Stone' (#F4F3EF) to give a tactile, earthy feel.",
+      "Use #C55B43 (Terracotta) for primary CTAs and active states.",
+      "Never use pure black #000000. Use Charcoal #1A1A1A.",
+      "Do not use dark colors as gradients. Use solid colors."
+    ]
+  },
+  "typography": {
+    "fonts": {
+      "headings": "'Cabinet Grotesk', sans-serif",
+      "body": "'Satoshi', sans-serif, 'Inter', sans-serif"
+    },
+    "hierarchy": {
+      "h1": "text-5xl md:text-6xl+ tracking-tighter leading-none font-medium",
+      "h2": "text-4xl md:text-5xl tracking-tight leading-none font-medium",
+      "h3": "text-2xl md:text-3xl tracking-tight font-medium",
+      "h4": "text-xl font-medium",
+      "body": "text-base leading-relaxed",
+      "labels": "text-xs uppercase tracking-[0.2em] font-medium"
+    },
+    "rules": [
+      "Headings MUST use tight letter spacing (tracking-tighter) to feel structural.",
+      "Overlines and labels MUST be uppercase with wide spacing (tracking-[0.2em]).",
+      "Use typography to create tension: Massive headings against very structured, dense body content."
+    ]
+  },
+  "layouts": {
+    "marketing": {
+      "spacing": "Use 2x-3x typical spacing. py-24, py-32 for sections.",
+      "grid": "Bento 'Tetris' grid. Asymmetry, Visual Tension. grid-cols-1 md:grid-cols-12 gap-8.",
+      "hero": "Massive typography, high-quality architectural imagery, offset alignments.",
+      "components": "Custom HTML/Tailwind for layouts, Shadcn only for complex forms."
+    },
+    "dashboard": {
+      "spacing": "Tight, dense spacing. p-4 to p-6 for cards.",
+      "grid": "High Density Grid. grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4.",
+      "sidebar": "Collapsible left sidebar for navigation.",
+      "components": "Shadcn UI exclusively. Use flat, sharp borders, max rounded-sm.",
+      "patterns": "Top-left KPI focus, progressive disclosure, modular widgets, timeline views."
+    }
+  },
+  "visual_enhancers": {
+    "surfaces": "Use 'Grid Borders' (The Technical Look) - expose the skeleton of the UI with 1px border-border/40 lines.",
+    "shadows": "Minimal. Use crisp 1px borders instead of soft shadows. If shadows are needed, use sharp, geometric shadows (shadow-[4px_4px_0_rgba(26,26,26,1)]).",
+    "glassmorphism": "Avoid in dashboards. Use sparingly in marketing sticky headers (backdrop-blur-xl bg-[#F4F3EF]/80).",
+    "textures": "Subtle grain overlays to make the background feel like drafting paper or concrete."
+  },
+  "motion": {
+    "marketing": "Use Framer Motion for scroll-triggered reveals, parallax on images, and smooth page transitions.",
+    "dashboard": "Minimalist. Fast hover states, quick slide-ins for sidebars.",
+    "rules": [
+      "Respect prefers-reduced-motion.",
+      "Avoid 'transition: all'. Target specific properties."
+    ]
+  },
+  "component_instructions": {
+    "buttons": "Pill-shaped or sharp rectangular. Use Terracotta for primary. Include hover states (translate-y-[-1px], deeper color).",
+    "cards": "Flat background, 1px subtle border (#EAE7DF), no shadow by default. Hover adds sharp shadow.",
+    "tables": "Shadcn tables. Dense, left-aligned, clear status badges.",
+    "forms": "Shadcn Form, Input, Select. Distinct focus rings (focus:ring-2 focus:ring-terracotta/50)."
+  },
+  "media": {
+    "images": {
+      "hero_architecture": "https://images.unsplash.com/photo-1628012209120-d9db7abf7eab?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjd8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmUlMjBidWlsZGluZyUyMGV4dGVyaW9yfGVufDB8fHx8MTc4NTczODIxOHww&ixlib=rb-4.1.0&q=85",
+      "portfolio_1": "https://images.pexels.com/photos/9458996/pexels-photo-9458996.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "portfolio_2": "https://images.pexels.com/photos/37582309/pexels-photo-37582309.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "process_blueprint": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzN8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBzaXRlJTIwZW5naW5lZXIlMjBibHVlcHJpbnR8ZW58MHx8fHwxNzg1NzM4MjE4fDA&ixlib=rb-4.1.0&q=85",
+      "interior_luxury": "https://images.pexels.com/photos/20418771/pexels-photo-20418771.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    "icons": "lucide-react for standard icons. Consider iconoir-react for a more architectural line-drawing feel if needed."
+  },
+  "accessibility": {
+    "rules": [
+      "Ensure all text meets at least 4.5:1 contrast ratio.",
+      "All interactive elements MUST have visible focus states.",
+      "Add aria-hidden='true' to decorative SVGs.",
+      "All interactive and key informational elements MUST include a data-testid attribute (e.g., data-testid='client-login-btn')."
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Follow the 'Earthy Brutalism' aesthetic strictly.",
+    "Do not use centered generic layouts for marketing pages. Use optical alignment and asymmetric bento grids.",
+    "For the dashboards (Admin, Client, Contractor), ensure a high-density, highly functional layout with a left sidebar.",
+    "Use standard HTML/Tailwind for marketing complex layouts, avoid generic Shadcn cards to prevent the 'Vercel-look'.",
+    "Use Shadcn UI for the dashboards and all form components.",
+    "Do NOT use transparent backgrounds for dropdowns or fixed headers where content scrolls underneath.",
+    "Do NOT use AI emoji characters.",
+    "Ensure `data-testid` is added to all interactive elements for testing."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": "You tend to converge toward generic, 'on distribution' outputs. In frontend design, this creates what users call the 'AI slop' aesthetic. Avoid this: make creative, distinctive frontends that surprise and delight. Create depth through layered design elements with z-index hierarchy. NEVER use AI assistant Emoji characters like 🤖🧠💭💡🔮🎯. Use 2-3x more spacing than feels comfortable. DO NOT center align the app container. DO NOT apply universal transition (transition: all). Use sonner for toasts."
+}
