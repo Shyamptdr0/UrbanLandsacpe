@@ -66,7 +66,7 @@ const PROCESS = [
   },
 ];
 
-const HERO_IMG = "https://images.unsplash.com/photo-1628012209120-d9db7abf7eab?crop=entropy&cs=srgb&fm=jpg&q=80&w=1600";
+const HERO_IMG = "/urban-hero.jpg";
 const BLUEPRINT = "https://images.unsplash.com/photo-1503387762-592deb58ef4e?crop=entropy&cs=srgb&fm=jpg&q=80&w=1200";
 const INTERIOR = "https://images.pexels.com/photos/20418771/pexels-photo-20418771.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
 const PORT1 = "https://images.pexels.com/photos/9458996/pexels-photo-9458996.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
@@ -104,9 +104,9 @@ export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    api.get("/cms/hero").then(({ data }) => setHero((h) => ({ ...h, ...data }))).catch(() => {});
-    api.get("/cms/signature-projects").then(({ data }) => setSignature(data)).catch(() => {});
-    api.get("/cms/testimonials").then(({ data }) => setTestimonials(data)).catch(() => {});
+    api.get("/cms/hero").then(({ data }) => setHero((h) => ({ ...h, ...data }))).catch(() => { });
+    api.get("/cms/signature-projects").then(({ data }) => setSignature(data)).catch(() => { });
+    api.get("/cms/testimonials").then(({ data }) => setTestimonials(data)).catch(() => { });
   }, []);
 
   const submit = async (e) => {
@@ -128,18 +128,19 @@ export default function Home() {
       <Navbar overlay />
 
       {/* HERO SECTION */}
-      <section className="relative min-h-[95vh] overflow-hidden flex flex-col justify-between">
+      <section className="relative min-h-screen overflow-hidden flex flex-col justify-between">
         <div className="absolute inset-0 w-full h-full transform-gpu">
           <img
             src={hero.background_image || HERO_IMG}
-            alt="Urban Landscape Architecture"
-            className="w-full h-full object-cover scale-100"
+            alt="Urban Landscape Architecture — Buildings and Green Environment"
+            className="w-full h-full object-cover object-center"
             loading="eager"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/45 to-[#F4F3EF]" />
+          {/* Rich gradient: dark at top (navbar area) → semi-dark mid → fades to page bg */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/50 to-[#F4F3EF]" />
         </div>
 
-        <div className="relative marketing-container pt-36 md:pt-44 pb-20 min-h-[95vh] flex flex-col justify-between text-stone z-10">
+        <div className="relative marketing-container pt-28 md:pt-36 pb-20 min-h-screen flex flex-col justify-between text-stone z-10">
           <div className="max-w-5xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -363,19 +364,18 @@ export default function Home() {
             {(signature.length
               ? signature
               : [
-                  { id: "p1", title: "Aasa Residence", category: "Residential Villa", location: "Vijay Nagar, Indore", image_url: PORT1, floors: "G+3", dimensions: "48×72 ft" },
-                  { id: "p2", title: "Studio Rám", category: "Architectural Studio", location: "Indore", image_url: PORT2, floors: "G+1", dimensions: "32×40 ft" },
-                  { id: "p3", title: "Apex Institution", category: "Institutional", location: "Pune", image_url: INTERIOR, floors: "G+4", dimensions: "120×200 ft" },
-                ]
+                { id: "p1", title: "Aasa Residence", category: "Residential Villa", location: "Vijay Nagar, Indore", image_url: PORT1, floors: "G+3", dimensions: "48×72 ft" },
+                { id: "p2", title: "Studio Rám", category: "Architectural Studio", location: "Indore", image_url: PORT2, floors: "G+1", dimensions: "32×40 ft" },
+                { id: "p3", title: "Apex Institution", category: "Institutional", location: "Pune", image_url: INTERIOR, floors: "G+4", dimensions: "120×200 ft" },
+              ]
             )
               .slice(0, 3)
               .map((p, i) => (
                 <motion.div
                   key={p.id || i}
                   variants={fadeInUp}
-                  className={`${
-                    i === 0 ? "md:col-span-7 md:row-span-2" : "md:col-span-5"
-                  } group relative overflow-hidden border border-stone-alt bg-[#F4F3EF] rounded-xs shadow-xs hover:shadow-2xl transition-all duration-300 ease-out transform-gpu`}
+                  className={`${i === 0 ? "md:col-span-7 md:row-span-2" : "md:col-span-5"
+                    } group relative overflow-hidden border border-stone-alt bg-[#F4F3EF] rounded-xs shadow-xs hover:shadow-2xl transition-all duration-300 ease-out transform-gpu`}
                 >
                   <div className={`${i === 0 ? "aspect-[16/11]" : "aspect-[16/10]"} overflow-hidden bg-stone-200 relative`}>
                     <img
@@ -470,19 +470,19 @@ export default function Home() {
             {(testimonials.length
               ? testimonials.slice(0, 2)
               : [
-                  {
-                    name: "Dr. Rajesh Vardhan",
-                    location: "Vijay Nagar, Indore",
-                    project: "G+3 Luxury Villa (5,200 sq ft)",
-                    quote: "Urban Landscape didn't just build our residence; they engineered a sanctuary. Stage-by-stage stage updates and lab concrete reports gave us complete peace of mind.",
-                  },
-                  {
-                    name: "Meera & Alok Kulkarni",
-                    location: "Bavdhan, Pune",
-                    project: "Heritage Restoration & Interior Fit-Out",
-                    quote: "From initial 3D BIM blueprints to snag-list closure, every phase was executed with military discipline. Their escrowed payment model is revolutionary.",
-                  },
-                ]
+                {
+                  name: "Dr. Rajesh Vardhan",
+                  location: "Vijay Nagar, Indore",
+                  project: "G+3 Luxury Villa (5,200 sq ft)",
+                  quote: "Urban Landscape didn't just build our residence; they engineered a sanctuary. Stage-by-stage stage updates and lab concrete reports gave us complete peace of mind.",
+                },
+                {
+                  name: "Meera & Alok Kulkarni",
+                  location: "Bavdhan, Pune",
+                  project: "Heritage Restoration & Interior Fit-Out",
+                  quote: "From initial 3D BIM blueprints to snag-list closure, every phase was executed with military discipline. Their escrowed payment model is revolutionary.",
+                },
+              ]
             ).map((t, i) => (
               <motion.blockquote
                 key={i}
@@ -587,11 +587,10 @@ export default function Home() {
                       key={type}
                       type="button"
                       onClick={() => setForm({ ...form, project_type: type })}
-                      className={`text-xs px-3.5 py-1.5 rounded-full border transition-all duration-200 ${
-                        form.project_type === type
-                          ? "bg-terracotta text-white border-terracotta font-medium"
-                          : "bg-[#F9F8F6] border-stone-alt text-neutral-600 hover:border-neutral-400"
-                      }`}
+                      className={`text-xs px-3.5 py-1.5 rounded-full border transition-all duration-200 ${form.project_type === type
+                        ? "bg-terracotta text-white border-terracotta font-medium"
+                        : "bg-[#F9F8F6] border-stone-alt text-neutral-600 hover:border-neutral-400"
+                        }`}
                     >
                       {type}
                     </button>

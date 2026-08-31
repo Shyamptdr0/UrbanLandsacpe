@@ -18,14 +18,17 @@ export default function Navbar({ overlay = false }) {
   return (
     <header
       data-testid="site-navbar"
-      className={`${overlay ? "absolute" : "sticky top-0"} inset-x-0 z-40 backdrop-blur-xl bg-[#F4F3EF]/85 border-b border-stone-alt`}
+      className={`${overlay
+        ? "absolute inset-x-0 top-0 z-40 bg-transparent border-b border-white/10"
+        : "sticky top-0 z-40 backdrop-blur-xl bg-[#F4F3EF]/90 border-b border-stone-alt"
+        }`}
     >
-      <div className="marketing-container flex items-center justify-between h-16">
+      <div className="marketing-container flex items-center justify-between h-20">
         <Link href="/" data-testid="brand-link" className="flex items-center gap-3">
-          <div className="w-6 h-6 border border-charcoal grid place-items-center">
+          <div className={`w-6 h-6 border grid place-items-center ${overlay ? "border-white/80" : "border-charcoal"}`}>
             <div className="w-1.5 h-1.5 bg-terracotta" />
           </div>
-          <span className="font-heading tracking-tight text-[17px] font-medium">Urban Landscape</span>
+          <span className={`font-heading tracking-tight text-[17px] font-medium ${overlay ? "text-white drop-shadow-sm" : ""}`}>Urban Landscape</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -34,7 +37,13 @@ export default function Navbar({ overlay = false }) {
               key={n.to}
               href={n.to}
               data-testid={`nav-${n.to.replace("/", "")}`}
-              className={`relative text-sm font-medium transition-colors duration-300 ease-out py-1 ${pathname === n.to ? "text-charcoal" : "text-neutral-600 hover:text-charcoal"
+              className={`relative text-sm font-medium transition-colors duration-300 ease-out py-1 ${overlay
+                ? pathname === n.to
+                  ? "text-white"
+                  : "text-white/80 hover:text-white"
+                : pathname === n.to
+                  ? "text-charcoal"
+                  : "text-neutral-600 hover:text-charcoal"
                 }`}
             >
               {n.label}
@@ -44,7 +53,7 @@ export default function Navbar({ overlay = false }) {
             </Link>
           ))}
           <DropdownMenu>
-            <DropdownMenuTrigger data-testid="nav-more" className="text-sm font-medium text-neutral-600 hover:text-charcoal transition-colors duration-300 ease-out flex items-center gap-1">
+            <DropdownMenuTrigger data-testid="nav-more" className={`text-sm font-medium transition-colors duration-300 ease-out flex items-center gap-1 ${overlay ? "text-white/80 hover:text-white" : "text-neutral-600 hover:text-charcoal"}`}>
               More <span className="text-xs">▾</span>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="bg-white/95 backdrop-blur-md border border-stone-alt rounded-sm w-56 p-1 shadow-lg transition-all duration-200 ease-out">
@@ -57,16 +66,16 @@ export default function Navbar({ overlay = false }) {
           </DropdownMenu>
         </nav>
 
-        <button data-testid="mobile-menu-toggle" className="md:hidden" onClick={() => setOpen(!open)}>
+        <button data-testid="mobile-menu-toggle" className={`md:hidden ${overlay ? "text-white" : ""}`} onClick={() => setOpen(!open)}>
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
       {open && (
-        <div className="md:hidden border-t border-stone-alt bg-[#F4F3EF]">
+        <div className={`md:hidden border-t ${overlay ? "border-white/20 bg-black/60 backdrop-blur-xl" : "border-stone-alt bg-[#F4F3EF]"}`}>
           <div className="marketing-container py-4 grid gap-3">
-            {NAV.map((n) => <Link key={n.to} href={n.to} onClick={() => setOpen(false)} className="text-sm">{n.label}</Link>)}
-            <Link href="/login?tab=client" onClick={() => setOpen(false)} className="text-sm">Login as Client</Link>
-            <Link href="/login?tab=contractor" onClick={() => setOpen(false)} className="text-sm">Login as Contractor</Link>
+            {NAV.map((n) => <Link key={n.to} href={n.to} onClick={() => setOpen(false)} className={`text-sm ${overlay ? "text-white/90" : ""}`}>{n.label}</Link>)}
+            <Link href="/login?tab=client" onClick={() => setOpen(false)} className={`text-sm ${overlay ? "text-white/90" : ""}`}>Login as Client</Link>
+            <Link href="/login?tab=contractor" onClick={() => setOpen(false)} className={`text-sm ${overlay ? "text-white/90" : ""}`}>Login as Contractor</Link>
           </div>
         </div>
       )}
