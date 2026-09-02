@@ -29,7 +29,7 @@ module.exports = {
         },
         charcoal: '#1A1A1A',
         terracotta: {
-          DEFAULT: '#C55B43',
+          DEFAULT: '#053c63',
           dark: '#A14732',
           light: '#E37A5F',
         },

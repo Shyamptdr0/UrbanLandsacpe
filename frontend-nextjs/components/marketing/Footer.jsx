@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ShieldCheck, Award, MapPin, Mail, PhoneCall } from "lucide-react";
+import Logo from "@/components/ui/Logo";
 
 export default function Footer() {
   return (
@@ -7,10 +8,13 @@ export default function Footer() {
       <div className="marketing-container py-16 md:py-20 grid md:grid-cols-12 gap-10">
         <div className="md:col-span-5">
           <div className="flex items-center gap-3">
-            <div className="w-6 h-6 border border-charcoal grid place-items-center bg-white shadow-xs">
-              <div className="w-1.5 h-1.5 bg-terracotta" />
+            <div className="w-9 h-9 rounded-md bg-[#053c63] p-1.5 flex items-center justify-center shadow-xs">
+              <Logo className="w-full h-full text-white" />
             </div>
-            <span className="font-heading tracking-tight text-xl font-medium text-charcoal">Urban Landscape</span>
+            <div className="flex flex-col">
+              <span className="font-heading tracking-tight text-xl font-semibold text-charcoal leading-tight">Urban Landscape</span>
+              <span className="text-[9px] uppercase tracking-[0.2em] font-medium text-neutral-500 mt-0.5">Designing Better Futures</span>
+            </div>
           </div>
           <p className="mt-4 text-sm text-neutral-600 max-w-md leading-relaxed font-light">
             Central India’s premier architectural construction ecosystem — engineered on structural precision, radical transparency, and legacy craftsmanship.

@@ -16,7 +16,7 @@ const TABS = [
     heading: "Client Portal",
     title: "Access your project.",
     desc: "Sign in with your approved client credentials to view project status, drawings, stage updates, and payment schedules.",
-    cta: "/join/client",
+    cta: "/client/register",
     ctaLabel: "Register as Client",
   },
   {
@@ -25,7 +25,7 @@ const TABS = [
     heading: "Professional Portal",
     title: "Manage your business.",
     desc: "Sign in with your approved professional credentials to view assigned projects, submit material requests, upload drawings, and track payments.",
-    cta: "/join/contractor",
+    cta: "/contractor/register",
     ctaLabel: "Register your business",
   },
 ];

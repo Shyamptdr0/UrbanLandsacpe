@@ -90,7 +90,7 @@ export default function ProjectsPage() {
             <Sparkles size={14} className="text-terracotta" /> Portfolio & Showcase
           </div>
           <h1 className="font-heading text-5xl md:text-7xl tracking-tighter leading-[0.95] max-w-4xl text-charcoal">
-            Signature <span className="italic font-normal">masterworks.</span>
+            Signature <span className="italic font-normal text-[#053c63]">masterworks.</span>
           </h1>
           <p className="mt-4 text-neutral-600 max-w-2xl text-base md:text-lg">
             A curated archive of residential villas, commercial hubs, and architectural marvels engineered by our master professionals.

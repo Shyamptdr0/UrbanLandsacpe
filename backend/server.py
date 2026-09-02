@@ -942,7 +942,7 @@ async def get_hero():
         "key": "hero",
         "headline": "Shape the future of living.",
         "subheadline": "Select your path and discover a tailored experience crafted for your unique journey in construction.",
-        "background_image": "https://images.unsplash.com/photo-1628012209120-d9db7abf7eab?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjd8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmUlMjBidWlsZGluZyUyMGV4dGVyaW9yfGVufDB8fHx8MTc4NTczODIxOHww&ixlib=rb-4.1.0&q=85",
+        "background_image": "/imagebg-urban.webp",
     }
     return h
 

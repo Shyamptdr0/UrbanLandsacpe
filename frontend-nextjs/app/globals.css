@@ -101,7 +101,19 @@
     font-feature-settings: "ss01", "ss02";
   }
   h1, h2, h3, h4, h5 { font-family: 'Cabinet Grotesk', sans-serif; letter-spacing: -0.02em; }
-  ::selection { background: #C55B43; color: #F4F3EF; }
+  ::selection { background: #053c63; color: #ffffff; }
+
+  /* Prevent native image/link dragging from locking page hover states */
+  img, a {
+    -webkit-user-drag: none;
+    user-drag: none;
+  }
+
+  /* Prevent navbar, header, and buttons from accidental selection lock */
+  nav, header, button, [role="button"], .label-caps, .select-none {
+    -webkit-user-select: none;
+    user-select: none;
+  }
 }
 
 @layer components {
@@ -179,6 +191,35 @@
 
 /* App level */
 .App { min-height: 100vh; }
+
+/* Sleek custom dark modal scrollbar - clearly visible */
+.custom-modal-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #A14732 rgba(255, 255, 255, 0.08);
+}
+
+.custom-modal-scrollbar::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+  display: block;
+}
+
+.custom-modal-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 9999px;
+  margin: 4px 0;
+}
+
+.custom-modal-scrollbar::-webkit-scrollbar-thumb {
+  background: #A14732;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 6px rgba(161, 71, 50, 0.35);
+}
+
+.custom-modal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #C55B43;
+}
 
 @layer base {
   [data-debug-wrapper="true"] { display: contents !important; }
