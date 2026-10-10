@@ -65,12 +65,12 @@ function AdminHome() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <StatCard label="Total Received" value={fmt(s?.received)} sub="From clients" tone="dark" />
           <StatCard label="Pending from Clients" value={fmt(s?.pending_from_clients)} />
-          <StatCard label="Paid to Contractors" value={fmt(s?.paid_contractors)} />
+          <StatCard label="Paid to AEC Professionals" value={fmt(s?.paid_contractors)} />
           <StatCard label="Remaining to Pay" value={fmt(s?.remaining_contractors)} />
         </div>
         <div className="grid md:grid-cols-3 gap-4">
           <StatCard label="Approved Clients" value={s?.total_clients ?? "—"} />
-          <StatCard label="Approved Professionals" value={s?.total_contractors ?? "—"} />
+          <StatCard label="Approved AEC Professionals" value={s?.total_contractors ?? "—"} />
           <StatCard label="Pending Material Requests" value={s?.pending_materials ?? "—"} />
         </div>
         <div className="grid md:grid-cols-3 gap-4">
@@ -218,7 +218,7 @@ function UsersPage() {
       <div className="p-6 md:p-10 space-y-6">
         <Tabs value={role} onValueChange={setRole}>
           <TabsList>
-            <TabsTrigger value="contractor" data-testid="tab-contractors">Contractors</TabsTrigger>
+            <TabsTrigger value="contractor" data-testid="tab-contractors">AEC Professionals</TabsTrigger>
             <TabsTrigger value="client" data-testid="tab-clients">Clients</TabsTrigger>
           </TabsList>
         </Tabs>
@@ -229,7 +229,7 @@ function UsersPage() {
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-stone-alt pb-3">
               <div>
                 <div className="text-xs uppercase tracking-wider font-semibold text-terracotta">Management</div>
-                <div className="font-heading text-lg font-semibold text-charcoal">Contractor Types / Categories</div>
+                <div className="font-heading text-lg font-semibold text-charcoal">AEC Professional Types / Categories</div>
               </div>
               <div className="flex items-center gap-2">
                 <Input
@@ -290,7 +290,7 @@ function UsersPage() {
                 <th className="text-left p-3">Address</th>
                 <th className="text-left p-3">User ID</th>
                 <th className="text-left p-3">Password</th>
-                {role === "contractor" && <th className="text-left p-3">Contractor Type</th>}
+                {role === "contractor" && <th className="text-left p-3">AEC Professional Type</th>}
                 <th className="text-left p-3">Status</th>
                 <th className="text-right p-3">Actions</th>
               </tr>
@@ -413,7 +413,7 @@ function UsersPage() {
                   <Input value={editForm.business_name} onChange={(e) => setEditForm({ ...editForm, business_name: e.target.value })} />
                 </div>
                 <div>
-                  <label className="label-caps mb-1 block">Contractor Type / Category</label>
+                  <label className="label-caps mb-1 block">AEC Professional Type / Category</label>
                   <Select
                     value={editForm.category || ""}
                     onValueChange={(val) => setEditForm({ ...editForm, category: val })}
@@ -723,7 +723,7 @@ function ProjectsPage() {
                   </SelectContent>
                 </Select>
               </F>
-              <F label="Contractor">
+              <F label="AEC Professional">
                 <Select value={form.contractor_id} onValueChange={(v) => setForm({ ...form, contractor_id: v })}>
                   <SelectTrigger data-testid="proj-contractor"><SelectValue placeholder="Select contractor" /></SelectTrigger>
                   <SelectContent className="bg-white border border-stone-alt shadow-xl z-[999]">
@@ -801,7 +801,7 @@ function ProjectsPage() {
                   <th className="text-left p-3">Title</th>
                   <th className="text-left p-3">Type</th>
                   <th className="text-left p-3">Client</th>
-                  <th className="text-left p-3">Contractor</th>
+                  <th className="text-left p-3">AEC Professional</th>
                   <th className="text-left p-3">Rate (sq ft)</th>
                   <th className="text-left p-3">Amount</th>
                   <th className="text-left p-3">Status</th>
@@ -1044,7 +1044,7 @@ function DrawingsPage() {
                   <span className="marker-num text-neutral-600 font-medium">{selectedProject.client?.user_code || "—"}</span>
                 </div>
                 <div>
-                  <span className="font-semibold text-charcoal">Contractor ID:</span>{" "}
+                  <span className="font-semibold text-charcoal">AEC Professional ID:</span>{" "}
                   <span className="marker-num text-neutral-600 font-medium">{selectedProject.contractor?.user_code || "—"}</span>
                 </div>
               </div>
@@ -1054,7 +1054,7 @@ function DrawingsPage() {
                   <span className="text-neutral-700">{selectedProject.client?.full_name || "—"}</span>
                 </div>
                 <div>
-                  <span className="font-semibold text-charcoal">Contractor Name:</span>{" "}
+                  <span className="font-semibold text-charcoal">AEC Professional Name:</span>{" "}
                   <span className="text-neutral-700">{selectedProject.contractor?.full_name || "—"}</span>
                 </div>
               </div>
@@ -1778,7 +1778,7 @@ function StagesPage() {
           {uncheckingStage && (
             <div className="space-y-4 text-sm mt-2">
               <p className="text-xs text-neutral-600">
-                You are unchecking stage <strong className="text-charcoal">{uncheckingStage.stage_name}</strong>. Please enter the reason/remark for unchecking (visible to Contractor and Client).
+                You are unchecking stage <strong className="text-charcoal">{uncheckingStage.stage_name}</strong>. Please enter the reason/remark for unchecking (visible to AEC Professional and Client).
               </p>
               <div>
                 <label className="label-caps mb-1 block text-red-700">Reason / Remark for Unchecking *</label>
@@ -2104,7 +2104,7 @@ function PaymentsPage() {
                   <div className="text-xs uppercase tracking-wider font-semibold text-terracotta">Financial Summary</div>
                   <div className="font-heading text-xl text-charcoal font-medium mt-1">{selectedProject.title}</div>
                   <div className="text-xs text-neutral-500 mt-0.5">
-                    Client: <span className="font-medium text-neutral-700">{selectedProject.client?.full_name || "—"}</span> | Contractor: <span className="font-medium text-neutral-700">{selectedProject.contractor?.full_name || "—"}</span>
+                    Client: <span className="font-medium text-neutral-700">{selectedProject.client?.full_name || "—"}</span> | AEC Professional: <span className="font-medium text-neutral-700">{selectedProject.contractor?.full_name || "—"}</span>
                   </div>
                 </div>
 
@@ -2156,7 +2156,7 @@ function PaymentsPage() {
                   <div className="marker-num text-base font-semibold text-emerald-700 mt-1">{fmt(clientPaid)}</div>
                 </div>
                 <div className="bg-[#F9F8F6] p-3 border border-stone-alt rounded-sm">
-                  <div className="text-xs text-neutral-500 font-medium">Paid to Contractor</div>
+                  <div className="text-xs text-neutral-500 font-medium">Paid to AEC Professional</div>
                   <div className="marker-num text-base font-semibold text-blue-700 mt-1">{fmt(contractorPaid)}</div>
                 </div>
               </div>
@@ -2170,7 +2170,7 @@ function PaymentsPage() {
                     Client Payments ({clientRows.length} Installments)
                   </TabsTrigger>
                   <TabsTrigger value="contractor" className="data-[state=active]:bg-white data-[state=active]:shadow-sm px-6 py-2 text-xs font-medium uppercase tracking-wider">
-                    Contractor Payments ({contractorRows.length} Payouts)
+                    AEC Professional Payments ({contractorRows.length} Payouts)
                   </TabsTrigger>
                 </TabsList>
 
@@ -2178,7 +2178,7 @@ function PaymentsPage() {
                 <div className="mt-4 bg-[#F9F8F6] border border-stone-alt p-4 rounded-sm space-y-2">
                   <div className="flex flex-wrap items-center justify-between text-xs font-medium text-neutral-700">
                     <div>
-                      {activeTab === "client" ? "Client Payment Allocation" : "Contractor Payout Allocation"}:{" "}
+                      {activeTab === "client" ? "Client Payment Allocation" : "AEC Professional Payout Allocation"}:{" "}
                       <span className="font-semibold text-charcoal">
                         {fmt(activeTab === "client" ? clientScheduledTotal : contractorScheduledTotal)}
                       </span>{" "}
@@ -2223,7 +2223,7 @@ function PaymentsPage() {
                     </div>
                   </F>
                   <button onClick={add} className="btn-terra justify-center h-9" data-testid="pay-add">
-                    <Plus size={14} /> Add {activeTab === "client" ? "Client Installment" : "Contractor Payout"}
+                    <Plus size={14} /> Add {activeTab === "client" ? "Client Installment" : "AEC Professional Payout"}
                   </button>
                 </div>
 
@@ -2252,7 +2252,7 @@ function PaymentsPage() {
                               </span>
                             ) : (
                               <span className="text-blue-700 font-medium bg-blue-50 px-2 py-1 rounded border border-blue-100">
-                                To Contractor
+                                To AEC Professional
                               </span>
                             )}
                           </td>
@@ -2385,7 +2385,7 @@ function CMSPage() {
             <F label="Title"><Input value={sp.title} onChange={(e) => setSp({ ...sp, title: e.target.value })} /></F>
             <F label="Location"><Input value={sp.location} onChange={(e) => setSp({ ...sp, location: e.target.value })} /></F>
             <F label="Client Name"><Input value={sp.client_name} onChange={(e) => setSp({ ...sp, client_name: e.target.value })} /></F>
-            <F label="Contractor Name"><Input value={sp.contractor_name} onChange={(e) => setSp({ ...sp, contractor_name: e.target.value })} /></F>
+            <F label="AEC Professional Name"><Input value={sp.contractor_name} onChange={(e) => setSp({ ...sp, contractor_name: e.target.value })} /></F>
             <F label="Floors"><Input value={sp.floors} onChange={(e) => setSp({ ...sp, floors: e.target.value })} /></F>
             <F label="Dimensions"><Input value={sp.dimensions} onChange={(e) => setSp({ ...sp, dimensions: e.target.value })} /></F>
             <div className="md:col-span-2"><F label="Cover Image URL"><Input value={sp.image_url} onChange={(e) => setSp({ ...sp, image_url: e.target.value })} /></F></div>

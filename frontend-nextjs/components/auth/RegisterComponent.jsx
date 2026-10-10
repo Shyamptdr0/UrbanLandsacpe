@@ -22,12 +22,12 @@ const TABS = [
   },
   {
     id: "contractor",
-    label: "Professional",
-    heading: "Professional Registration",
+    label: "AEC Professionals",
+    heading: "AEC Professionals Registration",
     title: "Register your business.",
     desc: "Join our vetted network of construction professionals. Get matched with high-intent homeowners and enjoy guaranteed milestone disbursements with zero commission cuts.",
     loginUrl: "/login?tab=contractor",
-    loginLabel: "Already registered? Contractor Login",
+    loginLabel: "Already registered? AEC Professionals Login",
   },
 ];
 

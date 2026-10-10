@@ -206,7 +206,7 @@ export default function JoinContractorPage() {
                   href="/login?tab=contractor"
                   className="text-xs font-semibold uppercase tracking-wider text-neutral-600 hover:text-[#053c63] transition-colors ml-2"
                 >
-                  Contractor Portal Login →
+                  AEC Professionals Portal Login →
                 </Link>
               </div>
             </motion.div>

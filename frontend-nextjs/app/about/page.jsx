@@ -269,7 +269,7 @@ export default function About() {
                 <div className="space-y-6">
                   <div className="flex items-center justify-between">
                     <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#A14732]/20 border border-[#A14732]/40 text-[#A14732] text-xs font-mono font-semibold uppercase tracking-wider">
-                      <Briefcase size={14} /> For Contractors & Builders
+                      <Briefcase size={14} /> For AEC Professionals & Builders
                     </div>
                     <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#A14732]">
                       <HardHat size={22} />
@@ -278,10 +278,10 @@ export default function About() {
 
                   <div>
                     <h3 className="font-heading text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                      Contractor Hub: Build & Showcase Your Portfolio
+                      AEC Professionals Hub: Build & Showcase Your Portfolio
                     </h3>
                     <p className="text-neutral-400 text-sm sm:text-base font-light mt-2 leading-relaxed">
-                      Contractors can add their verified portfolio, showcase past structures, receive qualified client leads, and get guaranteed on-time milestone payouts.
+                      AEC Professionals can add their verified portfolio, showcase past structures, receive qualified client leads, and get guaranteed on-time milestone payouts.
                     </p>
                   </div>
 
@@ -303,7 +303,7 @@ export default function About() {
                     href="/login?tab=contractor"
                     className="text-xs font-semibold uppercase tracking-wider text-[#A14732] hover:text-white transition-colors flex items-center gap-2"
                   >
-                    Join as Verified Contractor <ArrowRight size={14} />
+                    Join as Verified AEC Professional <ArrowRight size={14} />
                   </Link>
                   <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">
                     Guaranteed Payouts
@@ -504,7 +504,7 @@ export default function About() {
                   href="/login?tab=contractor"
                   className="px-7 py-3.5 bg-white border border-neutral-300 text-neutral-800 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-neutral-50 transition-all flex items-center gap-2 shadow-xs"
                 >
-                  Register as Contractor <ArrowUpRight size={14} />
+                  Register as AEC Professional <ArrowUpRight size={14} />
                 </Link>
               </div>
             </div>

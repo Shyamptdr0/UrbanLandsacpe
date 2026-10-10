@@ -158,7 +158,7 @@ function ProjectsView() {
               <div className="font-heading text-2xl mt-2 tracking-tight">{p.title}</div>
               <div className="text-sm text-neutral-600 mt-2">{p.description}</div>
               <div className="mt-4 grid grid-cols-2 gap-3 text-xs">
-                <div><div className="label-caps">Contractor</div><div>{p.contractor?.full_name || "—"}</div></div>
+                <div><div className="label-caps">AEC Professional</div><div>{p.contractor?.full_name || "—"}</div></div>
                 <div><div className="label-caps">Amount</div><div className="marker-num">{fmt(p.total_amount)}</div></div>
                 <div><div className="label-caps">Rate (sq ft)</div><div>{p.rate ? `₹${p.rate}/sq ft` : "—"}</div></div>
                 <div><div className="label-caps">Start</div><div>{p.start_date || "—"}</div></div>
@@ -262,7 +262,7 @@ function DrawingsView() {
                   <span className="marker-num text-neutral-600 font-medium">{selectedProject.client?.user_code || "—"}</span>
                 </div>
                 <div>
-                  <span className="font-semibold text-charcoal">Contractor ID:</span>{" "}
+                  <span className="font-semibold text-charcoal">AEC Professional ID:</span>{" "}
                   <span className="marker-num text-neutral-600 font-medium">{selectedProject.contractor?.user_code || "—"}</span>
                 </div>
               </div>
@@ -272,7 +272,7 @@ function DrawingsView() {
                   <span className="text-neutral-700">{selectedProject.client?.full_name || "—"}</span>
                 </div>
                 <div>
-                  <span className="font-semibold text-charcoal">Contractor Name:</span>{" "}
+                  <span className="font-semibold text-charcoal">AEC Professional Name:</span>{" "}
                   <span className="text-neutral-700">{selectedProject.contractor?.full_name || "—"}</span>
                 </div>
               </div>

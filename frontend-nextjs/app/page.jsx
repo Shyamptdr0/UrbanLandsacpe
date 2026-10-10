@@ -20,17 +20,25 @@ import {
   ChevronRight,
   ChevronLeft,
   ChevronDown,
+  Star,
+  UserCheck,
+  Briefcase,
+  Check,
+  FileText,
+  X,
+  Loader2,
 } from "lucide-react";
 import Navbar from "@/components/marketing/Navbar";
 import Footer from "@/components/marketing/Footer";
 import api from "@/lib/api";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { toast } from "sonner";
 
 const STAT_CHIPS = [
   { label: "Reinforcement", value: "FE 550D TMT", highlight: "Highest Tensile" },
-  { label: "Concrete Grade", value: "M40 / M50", highlight: "Lab Certified" },
+  { label: "Concrete Grade", value: "M20 / M30", highlight: "Lab Certified" },
   { label: "Safety & Audit", value: "100% Compliant", highlight: "ISO 9001:2015" },
   { label: "Structural Warranty", value: "10 Years", highlight: "Legal Guarantee" },
   { label: "Delivery Precision", value: "99.4% On-Time", highlight: "Milestone Locked" },
@@ -80,8 +88,21 @@ const MASTERWORKS_SLIDES = [
     title: "Aasa Residence & Structural Villa",
     category: "Residential Villa Construction",
     contractor: "Vardhan Constructions & Co.",
+    leadName: "Er. Rajesh Vardhan",
+    roleTitle: "Grade-A Civil EPC Contractor",
+    regNo: "PWD Reg: Class-1 / 4812",
+    experience: "16+ Yrs Exp",
+    avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&auto=format&fit=crop&q=80",
+    rating: 4.9,
+    projectsCount: 42,
     location: "Vijay Nagar, Indore",
     specs: "G+3 Structure · 5,200 sq ft · M40 Grade Concrete",
+    scopeExecuted: [
+      "RCC Frame Execution",
+      "Excavation & Plinth Beam",
+      "Slump Test & Cube Audits",
+      "Escrow Milestone Handover",
+    ],
     image: PORT1,
     badge: "100% On-Time Handover",
   },
@@ -90,8 +111,21 @@ const MASTERWORKS_SLIDES = [
     title: "3D BIM Blueprint & Structural Calculation",
     category: "BIM & Structural Audit",
     contractor: "Apex Structural Engineers",
+    leadName: "Er. Ananya Deshmukh",
+    roleTitle: "Chartered Structural Engineer (M.Tech)",
+    regNo: "ISSE Reg: SE-Indore-092",
+    experience: "12+ Yrs Exp",
+    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&auto=format&fit=crop&q=80",
+    rating: 5.0,
+    projectsCount: 68,
     location: "Indore & Central India",
     specs: "FE 550D TMT · Lab Certified Slump Tests",
+    scopeExecuted: [
+      "Soil Load & Foundation Audit",
+      "Seismic Zone-3 Design",
+      "3D Structural BIM Modeling",
+      "Steel Quantity Optimization",
+    ],
     image: BLUEPRINT,
     badge: "ISO 9001:2015 Audited",
   },
@@ -100,8 +134,21 @@ const MASTERWORKS_SLIDES = [
     title: "Studio Rám Contemporary Hub",
     category: "Architectural Studio Build",
     contractor: "Matrix BuildTech Ltd.",
+    leadName: "Ar. Vikramaditya Sharma",
+    roleTitle: "Lead Principal Architect",
+    regNo: "COA Reg: CA/2015/71092",
+    experience: "14+ Yrs Exp",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80",
+    rating: 4.95,
+    projectsCount: 35,
     location: "South Tukoganj, Indore",
     specs: "Bespoke Steel & Glass Elevation · G+1",
+    scopeExecuted: [
+      "Concept & Spatial Planning",
+      "Glass & Steel Facade Detail",
+      "Architectural Lighting Plan",
+      "Turnkey Site Supervision",
+    ],
     image: PORT2,
     badge: "Escrow Protected",
   },
@@ -110,8 +157,21 @@ const MASTERWORKS_SLIDES = [
     title: "Bespoke Luxury Interior & Joinery",
     category: "Interior Fit-Out",
     contractor: "Urban Signature Interiors",
+    leadName: "Id. Meera Singhania",
+    roleTitle: "Senior Interior & Spatial Designer",
+    regNo: "IIID Member No. 4410",
+    experience: "10+ Yrs Exp",
+    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&auto=format&fit=crop&q=80",
+    rating: 4.88,
+    projectsCount: 51,
     location: "Bavdhan, Pune",
     specs: "Teak Joinery · Acoustic Soundproofing",
+    scopeExecuted: [
+      "Custom Teak Woodwork",
+      "Italian Marble Polishing",
+      "Smart Lighting Controls",
+      "Acoustic Wall Paneling",
+    ],
     image: INTERIOR,
     badge: "Turnkey Execution",
   },
@@ -120,8 +180,21 @@ const MASTERWORKS_SLIDES = [
     title: "The Grand Estate Villa Elevation",
     category: "Luxury Estate",
     contractor: "Shree Ram Engineering",
+    leadName: "Er. Alok Nath Verma",
+    roleTitle: "Chief Construction Director",
+    regNo: "IEI Fellow Reg: F-11920",
+    experience: "20+ Yrs Exp",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80",
+    rating: 4.98,
+    projectsCount: 94,
     location: "Super Corridor, Indore",
     specs: "G+2 Estate · Custom Swimming Pool & Landscaping",
+    scopeExecuted: [
+      "Full Turnkey Villa Execution",
+      "Subterranean Swimming Pool",
+      "Hardscaping & Landscaping",
+      "Rooftop Solar & MEP Systems",
+    ],
     image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?crop=entropy&cs=srgb&fm=jpg&q=80&w=1200",
     badge: "10-Year Warranty",
   },
@@ -604,7 +677,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-90" />
             <div className="absolute bottom-5 left-5 right-5 text-white">
               <div className="label-caps text-terracotta-light text-[10px] font-semibold">Lab Concrete Testing</div>
-              <div className="font-heading text-xl font-medium mt-1 tracking-tight">M40 / M50 Slump & Tensile Audit</div>
+              <div className="font-heading text-xl font-medium mt-1 tracking-tight">M20 / M30 Slump & Tensile Audit</div>
             </div>
           </motion.div>
 
@@ -681,7 +754,7 @@ function ContractorSlider() {
     if (!isAutoPlaying) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % MASTERWORKS_SLIDES.length);
-    }, 4500);
+    }, 5500);
     return () => clearInterval(interval);
   }, [isAutoPlaying]);
 
@@ -697,15 +770,19 @@ function ContractorSlider() {
 
   return (
     <section id="contractor-works" className="marketing-container py-20 md:py-28">
+      {/* SECTION HEADER */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
-        <div>
+        <div className="max-w-3xl">
           <div className="inline-flex items-center gap-2 label-caps text-terracotta font-semibold mb-3">
-            <Hammer size={14} /> Contractor Masterworks
+            <Hammer size={14} /> AEC Professionals Masterworks & Verified Directory
           </div>
           <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tighter leading-none text-charcoal">
-            Verified Contractor <br />
-            <span className="italic font-normal text-terracotta">Master Works.</span>
+            Verified AEC Professionals <br />
+            <span className="italic font-normal text-terracotta">Master Works & Credentials.</span>
           </h2>
+          <p className="mt-4 text-sm sm:text-base text-neutral-600 font-light leading-relaxed">
+            Central India’s premier directory of certified Architects, Structural Engineers, Interior Designers, and Grade-A Contractors. Inspect their verified past builds, license credentials, and executed scope of work.
+          </p>
         </div>
 
         {/* Carousel Controls */}
@@ -735,9 +812,9 @@ function ContractorSlider() {
         </div>
       </div>
 
-      {/* Main Slider Container */}
+      {/* Main Container - Dual Column Showcase */}
       <div
-        className="relative w-full h-[420px] sm:h-[500px] md:h-[580px] rounded-xs overflow-hidden border border-stone-alt shadow-lg group"
+        className="relative w-full h-[480px] sm:h-[520px] md:h-[540px] rounded-2xl overflow-hidden border border-stone-alt shadow-2xl bg-neutral-950 flex flex-col justify-end group"
         onMouseEnter={() => setIsAutoPlaying(false)}
         onMouseLeave={() => setIsAutoPlaying(true)}
       >
@@ -755,56 +832,142 @@ function ContractorSlider() {
               alt={currentSlide.title}
               className="w-full h-full object-cover object-center"
             />
-            {/* Cinematic Gradient Mask */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent" />
+            {/* Cinematic Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/20 md:bg-gradient-to-r md:from-black/85 md:via-black/35 md:to-transparent" />
           </motion.div>
         </AnimatePresence>
 
-        {/* Slide Info Overlay */}
-        <div className="absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:right-10 flex flex-col md:flex-row md:items-end justify-between gap-6 text-white z-10 pointer-events-none">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-terracotta text-white text-[10px] sm:text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-3 shadow-sm">
-              <Award size={12} /> {currentSlide.badge}
+        {/* Top Badges Bar */}
+        <div className="absolute top-5 left-5 right-5 z-10 flex items-center justify-between pointer-events-none">
+          <div className="inline-flex items-center gap-1.5 bg-terracotta/90 backdrop-blur-md text-white text-[10px] sm:text-xs font-semibold tracking-wider uppercase px-3 py-1.5 rounded-full shadow-md border border-white/20 pointer-events-auto">
+            <Award size={12} /> {currentSlide.badge}
+          </div>
+
+          {/* Dots Indicator */}
+          <div className="flex items-center gap-1 bg-black/50 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/15 pointer-events-auto">
+            {MASTERWORKS_SLIDES.map((slide, idx) => (
+              <button
+                key={slide.id}
+                type="button"
+                onClick={() => setCurrentIndex(idx)}
+                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${idx === currentIndex ? "w-5 bg-terracotta" : "w-1.5 bg-white/40 hover:bg-white/70"
+                  }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Content Grid: Left Project Title + Right Compact Professional Spotlight */}
+        <div className="relative z-10 p-5 md:p-8 grid md:grid-cols-12 gap-5 items-end">
+          {/* Left Column: Project Details */}
+          <div className="md:col-span-7 space-y-2 text-white">
+            <div className="inline-block text-[11px] font-mono font-medium text-amber-300 tracking-wider uppercase px-2 py-0.5 rounded bg-amber-950/70 border border-amber-500/30">
+              {currentSlide.category}
             </div>
 
-            <div className="label-caps text-stone-200/90 text-xs sm:text-sm font-medium">
-              {currentSlide.category} · {currentSlide.contractor}
-            </div>
-
-            <h3 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium mt-1 tracking-tight drop-shadow-md">
+            <h3 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-white drop-shadow-md leading-tight">
               {currentSlide.title}
             </h3>
 
-            <div className="flex items-center gap-3 text-xs sm:text-sm text-stone-300 font-mono mt-2">
-              <span className="flex items-center gap-1">
-                <MapPin size={13} className="text-terracotta-light" /> {currentSlide.location}
+            <div className="flex flex-wrap items-center gap-2 text-xs text-stone-300 font-mono">
+              <span className="flex items-center gap-1 text-terracotta-light font-medium">
+                <MapPin size={13} /> {currentSlide.location}
               </span>
               <span>•</span>
               <span>{currentSlide.specs}</span>
             </div>
           </div>
 
-          <Link
-            href="/projects"
-            className="pointer-events-auto btn-terra text-xs sm:text-sm shadow-md self-start md:self-end shrink-0"
-          >
-            View Project Details <ArrowUpRight size={16} />
-          </Link>
-        </div>
+          {/* Right Column: Luxury Glassmorphic AEC Professional Spotlight Badge */}
+          <div className="md:col-span-5 flex justify-end">
+            <motion.div
+              key={`pro-card-${currentSlide.id}`}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.05 }}
+              className="w-full max-w-sm bg-[#0C141C]/85 backdrop-blur-2xl border border-white/15 p-4 rounded-2xl text-white shadow-[0_16px_40px_rgba(0,0,0,0.6)] space-y-3 relative overflow-hidden"
+            >
+              {/* Top Accent Line */}
+              <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-terracotta via-amber-400 to-terracotta" />
 
-        {/* Slide Dots Bar */}
-        <div className="absolute top-6 right-6 z-10 flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
-          {MASTERWORKS_SLIDES.map((slide, idx) => (
-            <button
-              key={slide.id}
-              type="button"
-              onClick={() => setCurrentIndex(idx)}
-              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                idx === currentIndex ? "w-6 bg-terracotta" : "w-2 bg-white/40 hover:bg-white/70"
-              }`}
-              aria-label={`Go to slide ${idx + 1}`}
-            />
-          ))}
+              {/* Profile Header: Gradient Ring Avatar + Title */}
+              <div className="flex items-center gap-3 pt-0.5">
+                <div className="relative shrink-0">
+                  <div className="w-12 h-12 rounded-full p-0.5 bg-gradient-to-br from-terracotta via-amber-400 to-[#0C141C] shadow-md">
+                    <img
+                      src={currentSlide.avatar}
+                      alt={currentSlide.leadName}
+                      className="w-full h-full rounded-full object-cover"
+                    />
+                  </div>
+                  <span
+                    className="absolute bottom-0 right-0 bg-emerald-500 text-white p-0.5 rounded-full ring-2 ring-[#0C141C]"
+                    title="Verified Professional Partner"
+                  >
+                    <CheckCircle2 size={10} />
+                  </span>
+                </div>
+
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-1">
+                    <h4 className="text-sm font-bold font-heading text-white truncate tracking-tight">
+                      {currentSlide.leadName}
+                    </h4>
+                    <span className="text-[10px] font-mono text-amber-300 font-bold shrink-0 flex items-center gap-1 bg-amber-950/80 px-2 py-0.5 rounded-full border border-amber-500/30">
+                      <Star size={10} fill="currentColor" /> {currentSlide.rating}
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-terracotta-light font-medium truncate mt-0.5">
+                    {currentSlide.roleTitle}
+                  </p>
+                </div>
+              </div>
+
+              {/* Credentials & Firm Micro-Grid */}
+              <div className="bg-white/[0.04] border border-white/10 p-2.5 rounded-xl grid grid-cols-2 gap-2 text-[10px] font-mono">
+                <div>
+                  <span className="text-neutral-400 block uppercase text-[9px] tracking-wider font-semibold">Empanelled Firm</span>
+                  <span className="text-white font-sans font-semibold truncate block text-xs mt-0.5">{currentSlide.contractor}</span>
+                </div>
+                <div className="text-right">
+                  <span className="text-neutral-400 block uppercase text-[9px] tracking-wider font-semibold">Registration License</span>
+                  <span className="text-stone-300 block text-[10px] truncate mt-0.5">{currentSlide.regNo}</span>
+                </div>
+              </div>
+
+              {/* Executed Deliverables */}
+              <div>
+                <div className="text-[9px] uppercase tracking-widest font-mono text-neutral-400 font-bold mb-1.5 flex items-center justify-between">
+                  <span className="flex items-center gap-1">
+                    <Briefcase size={10} className="text-terracotta" /> Executed Deliverables
+                  </span>
+                  <span className="text-emerald-400 font-mono text-[9px]">Audited</span>
+                </div>
+                <div className="flex flex-wrap gap-1">
+                  {currentSlide.scopeExecuted.slice(0, 3).map((scope, i) => (
+                    <span
+                      key={i}
+                      className="text-[10px] bg-white/[0.06] text-stone-200 px-2 py-0.5 rounded-md border border-white/10 font-sans flex items-center gap-1 truncate"
+                    >
+                      <span className="w-1 h-1 rounded-full bg-emerald-400 shrink-0" />
+                      <span className="truncate">{scope}</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Clean Portfolio Action Link */}
+              <div className="pt-0.5">
+                <Link
+                  href="/projects"
+                  className="w-full btn-terra text-xs py-2 justify-center shadow-lg hover:shadow-terracotta/20 transition-all flex items-center gap-1.5 h-8.5 rounded-xl tracking-wider font-semibold"
+                >
+                  Explore Full Portfolio <ArrowUpRight size={14} />
+                </Link>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
@@ -833,13 +996,16 @@ function ProjectImageSlider({ images, title }) {
           key={activeIdx}
           src={images[activeIdx]}
           alt={`${title} photo ${activeIdx + 1}`}
-          initial={{ opacity: 0.5 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0.5, scale: 1.02 }}
+          animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0.5 }}
-          transition={{ duration: 0.3 }}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+          transition={{ duration: 0.35 }}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
         />
       </AnimatePresence>
+
+      {/* Subtle vignette gradient for contrast */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/30 pointer-events-none" />
 
       {/* Slide Controls overlay */}
       {images.length > 1 && (
@@ -848,7 +1014,7 @@ function ProjectImageSlider({ images, title }) {
             type="button"
             onClick={prevImg}
             aria-label="Previous image"
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center opacity-0 group-hover/slider:opacity-100 transition-all duration-200 z-10 cursor-pointer shadow-md"
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/70 hover:bg-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center opacity-0 group-hover/slider:opacity-100 transition-all duration-200 z-10 cursor-pointer shadow-lg hover:scale-110"
           >
             <ChevronLeft size={16} />
           </button>
@@ -856,13 +1022,13 @@ function ProjectImageSlider({ images, title }) {
             type="button"
             onClick={nextImg}
             aria-label="Next image"
-            className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center opacity-0 group-hover/slider:opacity-100 transition-all duration-200 z-10 cursor-pointer shadow-md"
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/70 hover:bg-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center opacity-0 group-hover/slider:opacity-100 transition-all duration-200 z-10 cursor-pointer shadow-lg hover:scale-110"
           >
             <ChevronRight size={16} />
           </button>
 
           {/* Dots Indicator */}
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-black/50 backdrop-blur-xs px-2.5 py-1 rounded-full z-10">
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 z-10">
             {images.map((_, idx) => (
               <button
                 key={idx}
@@ -872,9 +1038,8 @@ function ProjectImageSlider({ images, title }) {
                   e.preventDefault();
                   setActiveIdx(idx);
                 }}
-                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  idx === activeIdx ? "w-4 bg-terracotta" : "w-1.5 bg-white/60 hover:bg-white"
-                }`}
+                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${idx === activeIdx ? "w-4 bg-terracotta" : "w-1.5 bg-white/50 hover:bg-white"
+                  }`}
                 aria-label={`Photo ${idx + 1}`}
               />
             ))}
@@ -889,8 +1054,13 @@ function SignatureMasterworksSection({ signature }) {
   const items = signature && signature.length ? signature : SIGNATURE_PROJECTS_DATA;
 
   return (
-    <section className="border-t border-stone-alt bg-white">
-      <div className="marketing-container py-24 md:py-32">
+    <section className="relative border-t border-b border-white/10 bg-charcoal text-white overflow-hidden">
+      {/* Ambient background glows */}
+      <div className="absolute -top-32 left-1/4 w-[500px] h-[500px] bg-terracotta/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute -bottom-32 right-1/4 w-[450px] h-[450px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none" />
+
+      <div className="marketing-container relative z-10 py-24 md:py-32">
+        {/* SECTION HEADER */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -899,23 +1069,28 @@ function SignatureMasterworksSection({ signature }) {
           className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 transform-gpu"
         >
           <div>
-            <div className="inline-flex items-center gap-2 label-caps mb-3 text-terracotta font-semibold">
-              <Sparkles size={14} /> Portfolio Showcase
-            </div>
-            <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl tracking-tighter leading-none text-charcoal">
+            {/* <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-terracotta text-xs font-mono tracking-widest uppercase backdrop-blur-md mb-4 font-semibold">
+              <Sparkles size={13} className="text-terracotta" /> Curated Architectural Portfolio
+            </div> */}
+            <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tighter leading-[0.95] text-white">
               Signature <br />
-              <span className="italic font-normal text-terracotta">Masterworks.</span>
+              <span className="italic font-normal text-terracotta font-serif">Masterworks.</span>
             </h2>
+            <p className="text-neutral-400 text-sm md:text-base max-w-xl mt-4 font-light leading-relaxed">
+              Landmark civil executions, bespoke private residences, and institutional spaces engineered with military discipline and audited quality standards.
+            </p>
           </div>
           <Link
             href="/projects"
-            className="btn-ghost-dark self-start md:self-end"
+            className="group inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-white/5 hover:bg-terracotta border border-white/15 hover:border-terracotta text-white text-xs font-mono uppercase tracking-widest transition-all duration-300 shadow-lg hover:shadow-terracotta/25 hover:-translate-y-0.5 shrink-0 self-start md:self-end"
             data-testid="view-all-projects"
           >
-            Explore All Projects <ArrowRight size={16} />
+            <span>Explore All Projects</span>
+            <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform duration-200" />
           </Link>
         </motion.div>
 
+        {/* BENTO GRID */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -936,31 +1111,31 @@ function SignatureMasterworksSection({ signature }) {
               <motion.div
                 key={p.id || i}
                 variants={fadeInUp}
-                className={`${
-                  isFeatured ? "md:col-span-7 md:row-span-2" : "md:col-span-5"
-                } group relative overflow-hidden border ${
-                  isFeatured ? "border-terracotta/40 shadow-xl" : "border-stone-alt shadow-sm"
-                } bg-[#F4F3EF] rounded-xs hover:shadow-2xl transition-all duration-300 ease-out transform-gpu flex flex-col justify-between`}
+                className={`${isFeatured ? "md:col-span-7 md:row-span-2" : "md:col-span-5"
+                  } group relative overflow-hidden rounded-2xl border ${isFeatured
+                    ? "border-terracotta/40 bg-gradient-to-b from-[#181818] via-[#121212] to-[#0D0D0D] shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
+                    : "border-white/10 bg-gradient-to-b from-[#161616] to-[#0E0E0E] shadow-xl"
+                  } hover:border-terracotta/60 hover:shadow-[0_25px_60px_rgba(161,71,50,0.18)] transition-all duration-500 ease-out transform-gpu flex flex-col justify-between`}
               >
                 <div>
                   {/* Photo Slider Header Container */}
-                  <div className={`${isFeatured ? "aspect-[16/11]" : "aspect-[16/10]"} overflow-hidden bg-stone-200 relative`}>
+                  <div className={`${isFeatured ? "aspect-[16/11]" : "aspect-[16/10]"} overflow-hidden bg-neutral-900 relative`}>
                     <ProjectImageSlider images={imagesList} title={p.title} />
 
                     {/* Top Badges: Project of the Week & Category */}
                     <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none z-10">
                       {isFeatured ? (
-                        <div className="inline-flex items-center gap-1.5 bg-amber-500 text-neutral-950 font-extrabold text-[10px] uppercase tracking-widest px-3 py-1 rounded-full shadow-lg border border-amber-300 animate-pulse">
+                        <div className="inline-flex items-center gap-1.5 bg-gradient-to-r from-amber-400 to-amber-500 text-neutral-950 font-extrabold text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-full shadow-[0_4px_20px_rgba(245,158,11,0.4)] border border-amber-300">
                           <Sparkles size={12} fill="currentColor" /> Project Of The Week
                         </div>
                       ) : (
-                        <div className="bg-charcoal/85 text-white backdrop-blur-md text-[10px] uppercase tracking-widest px-3 py-1 font-medium rounded-full">
+                        <div className="bg-black/70 text-white/90 backdrop-blur-md border border-white/10 text-[10px] uppercase tracking-widest px-3 py-1.5 font-mono rounded-full">
                           {p.category || "Residential"}
                         </div>
                       )}
 
                       {isFeatured && (
-                        <div className="bg-charcoal/85 text-white backdrop-blur-md text-[10px] uppercase tracking-widest px-3 py-1 font-medium rounded-full">
+                        <div className="bg-black/70 text-white/90 backdrop-blur-md border border-white/10 text-[10px] uppercase tracking-widest px-3 py-1.5 font-mono rounded-full">
                           {p.category || "Residential Villa"}
                         </div>
                       )}
@@ -968,40 +1143,42 @@ function SignatureMasterworksSection({ signature }) {
                   </div>
 
                   {/* Details Card */}
-                  <div className="p-6 md:p-7 bg-white">
+                  <div className="p-6 md:p-8">
                     {/* Location */}
-                    <div className="flex items-center gap-1.5 text-xs text-terracotta font-semibold label-caps">
-                      <MapPin size={13} /> {p.location || "Vijay Nagar, Indore"}
+                    <div className="flex items-center gap-1.5 text-xs text-terracotta-light font-mono font-medium uppercase tracking-wider">
+                      <MapPin size={13} className="shrink-0" /> {p.location || "Vijay Nagar, Indore"}
                     </div>
 
                     {/* Title */}
-                    <h3 className="font-heading text-2xl md:text-3xl mt-2 tracking-tight text-charcoal group-hover:text-terracotta transition-colors duration-200">
+                    <h3 className="font-heading text-2xl md:text-3xl mt-2.5 tracking-tight text-white group-hover:text-terracotta transition-colors duration-200">
                       {p.title}
                     </h3>
 
                     {/* Area Wise Details */}
-                    <div className="flex flex-wrap items-center gap-2 mt-3 pt-3 border-t border-stone-100 text-xs text-neutral-600 font-mono">
-                      <span className="bg-[#F4F3EF] px-2.5 py-1 rounded-xs border border-stone-alt font-medium text-charcoal">
-                        Area: {p.area || "3,456 sq ft"}
+                    <div className="flex flex-wrap items-center gap-2 mt-4 pt-4 border-t border-white/10 text-xs font-mono">
+                      <span className="bg-white/5 px-3 py-1.5 rounded-lg border border-white/10 font-medium text-neutral-200 flex items-center gap-1.5">
+                        <span className="text-neutral-500">Area:</span> {p.area || "3,456 sq ft"}
                       </span>
-                      <span className="bg-[#F4F3EF] px-2.5 py-1 rounded-xs border border-stone-alt">
-                        Plot: {p.dimensions || "48×72 ft"}
+                      <span className="bg-white/5 px-3 py-1.5 rounded-lg border border-white/10 text-neutral-300 flex items-center gap-1.5">
+                        <span className="text-neutral-500">Plot:</span> {p.dimensions || "48×72 ft"}
                       </span>
-                      <span className="bg-[#F4F3EF] px-2.5 py-1 rounded-xs border border-stone-alt">
-                        {p.floors || "G+3"}
+                      <span className="bg-white/5 px-3 py-1.5 rounded-lg border border-white/10 text-neutral-300 flex items-center gap-1.5">
+                        <span className="text-neutral-500">Height:</span> {p.floors || "G+3"}
                       </span>
                     </div>
 
                     {/* Highlight Creator / Contractor */}
-                    <div className="mt-4 pt-3 border-t border-stone-alt flex items-center justify-between text-xs">
-                      <div className="flex items-center gap-2">
-                        <div className="w-7 h-7 rounded-full bg-terracotta/10 text-terracotta flex items-center justify-center shrink-0">
-                          <Award size={14} />
+                    <div className="mt-6 pt-5 border-t border-white/10 flex items-center justify-between text-xs">
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-full bg-terracotta/15 border border-terracotta/30 text-terracotta flex items-center justify-center shrink-0">
+                          <Award size={16} />
                         </div>
                         <div>
-                          <div className="text-[10px] uppercase tracking-wider text-neutral-400 font-semibold">Highlighted Creator</div>
-                          <div className="font-semibold text-charcoal text-xs">
-                            {creatorInfo.architect} <span className="font-normal text-neutral-500">· {creatorInfo.contractor}</span>
+                          <div className="text-[10px] uppercase tracking-wider text-neutral-400 font-mono font-semibold flex items-center gap-1.5">
+                            <ShieldCheck size={11} className="text-emerald-400" /> Vetted Master Architect & EPC
+                          </div>
+                          <div className="font-semibold text-terracotta-light text-xs mt-0.5">
+                            {creatorInfo.architect} <span className="font-normal text-neutral-400">· {creatorInfo.contractor}</span>
                           </div>
                         </div>
                       </div>
@@ -1009,7 +1186,7 @@ function SignatureMasterworksSection({ signature }) {
                       <Link
                         href="/projects"
                         aria-label={`View ${p.title}`}
-                        className="w-9 h-9 rounded-full border border-stone-alt flex items-center justify-center group-hover:bg-terracotta group-hover:border-terracotta group-hover:text-white transition-colors duration-200 shrink-0 ml-2"
+                        className="w-9 h-9 rounded-full bg-white/5 border border-white/15 flex items-center justify-center text-white group-hover:bg-terracotta group-hover:border-terracotta transition-all duration-200 shrink-0 ml-2"
                       >
                         <ArrowUpRight className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" size={16} />
                       </Link>
@@ -1020,6 +1197,28 @@ function SignatureMasterworksSection({ signature }) {
             );
           })}
         </motion.div>
+
+        {/* BOTTOM TRUST & QUALITY METRICS BANNER */}
+        {/* <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-40px" }}
+          variants={fadeInUp}
+          className="mt-14 pt-10 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center md:text-left"
+        >
+          {[
+            { label: "Landmark Projects", val: "50+ Executed", sub: "Commercial & Luxury Residential" },
+            { label: "Structural Guarantee", val: "10-Year Warranty", sub: "Legally Escrow Protected" },
+            { label: "Quality Assurance", val: "ISO 9001:2015", sub: "Lab & Cube Tested Concrete" },
+            { label: "Timely Handover", val: "99.4% Precision", sub: "Milestone-Gated Deliveries" },
+          ].map((stat, sIdx) => (
+            <div key={sIdx} className="bg-white/[0.03] border border-white/5 rounded-xl p-4 sm:p-5 hover:border-white/15 transition-colors">
+              <div className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 font-semibold">{stat.label}</div>
+              <div className="font-heading text-lg sm:text-xl font-bold text-terracotta mt-1">{stat.val}</div>
+              <div className="text-xs text-neutral-400 mt-0.5 font-light">{stat.sub}</div>
+            </div>
+          ))}
+        </motion.div> */}
       </div>
     </section>
   );

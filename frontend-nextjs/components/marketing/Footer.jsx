@@ -28,7 +28,7 @@ export default function Footer() {
               <Award size={13} className="text-terracotta" /> FE 550D TMT
             </span>
             <span className="inline-flex items-center gap-1 bg-white/70 px-2.5 py-1 rounded-full border border-stone-300 font-mono">
-              M40 / M50 Grade
+              M20 / M30 Grade
             </span>
           </div>
         </div>
@@ -47,9 +47,9 @@ export default function Footer() {
           <div className="label-caps mb-4 text-charcoal font-semibold">Portals</div>
           <ul className="space-y-2.5 text-sm text-neutral-600">
             <li><Link href="/join/client" className="hover:text-terracotta transition-colors">For Clients</Link></li>
-            <li><Link href="/join/contractor" className="hover:text-terracotta transition-colors">For Professionals</Link></li>
+            <li><Link href="/join/contractor" className="hover:text-terracotta transition-colors">For AEC Professionals</Link></li>
             <li><Link href="/login?tab=client" className="hover:text-terracotta transition-colors">Client Login</Link></li>
-            <li><Link href="/login?tab=contractor" className="hover:text-terracotta transition-colors">Contractor Login</Link></li>
+            <li><Link href="/login?tab=contractor" className="hover:text-terracotta transition-colors">AEC Professionals Login</Link></li>
           </ul>
         </div>
 

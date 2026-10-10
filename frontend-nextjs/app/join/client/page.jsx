@@ -99,7 +99,7 @@ const PROFESSIONAL_NETWORK = [
   },
   {
     icon: Wrench,
-    title: "Contractors",
+    title: "AEC Professionals",
     desc: "For execution and builds",
   },
   {

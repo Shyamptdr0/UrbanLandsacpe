@@ -265,7 +265,7 @@ function CDrawings() {
                   <span className="marker-num text-neutral-600 font-medium">{selectedProject.client?.user_code || "—"}</span>
                 </div>
                 <div>
-                  <span className="font-semibold text-charcoal">Contractor ID:</span>{" "}
+                  <span className="font-semibold text-charcoal">AEC Professional ID:</span>{" "}
                   <span className="marker-num text-neutral-600 font-medium">{selectedProject.contractor?.user_code || "—"}</span>
                 </div>
               </div>
@@ -275,7 +275,7 @@ function CDrawings() {
                   <span className="text-neutral-700">{selectedProject.client?.full_name || "—"}</span>
                 </div>
                 <div>
-                  <span className="font-semibold text-charcoal">Contractor Name:</span>{" "}
+                  <span className="font-semibold text-charcoal">AEC Professional Name:</span>{" "}
                   <span className="text-neutral-700">{selectedProject.contractor?.full_name || "—"}</span>
                 </div>
               </div>
@@ -696,7 +696,7 @@ function CPayments() {
           </>
         ) : (
           <div className="bg-white border border-stone-alt p-8 text-center text-neutral-500">
-            Select a project from the dropdown above to view contractor payment details.
+            Select a project from the dropdown above to view AEC professional payment details.
           </div>
         )}
       </div>

@@ -21,10 +21,10 @@ const TABS = [
   },
   {
     id: "contractor",
-    label: "Professional",
-    heading: "Professional Portal",
+    label: "AEC Professionals",
+    heading: "AEC Professionals Portal",
     title: "Manage your business.",
-    desc: "Sign in with your approved professional credentials to view assigned projects, submit material requests, upload drawings, and track payments.",
+    desc: "Sign in with your approved AEC professional credentials to view assigned projects, submit material requests, upload drawings, and track payments.",
     cta: "/contractor/register",
     ctaLabel: "Register your business",
   },

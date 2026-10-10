@@ -179,7 +179,7 @@ export default function Navbar({ overlay = false }) {
                     onClick={() => setMoreOpen(false)}
                     className="flex items-center justify-between w-full"
                   >
-                    <span className="text-neutral-800">Login as Contractor</span>
+                    <span className="text-neutral-800">Login as AEC Professionals</span>
                     <ArrowRight size={14} className="text-neutral-400" />
                   </Link>
                 </DropdownMenuItem>
@@ -271,7 +271,7 @@ export default function Navbar({ overlay = false }) {
                 onClick={() => setOpen(false)}
                 className="block text-sm py-1 font-medium hover:text-[#053c63]"
               >
-                Login as Contractor
+                Login as AEC Professionals
               </Link>
               <Link
                 href="/about"
