@@ -16,6 +16,7 @@ node_modules/
 !.yarn/releases
 !.yarn/versions
 
+docs/
 # Testing
 /coverage
 

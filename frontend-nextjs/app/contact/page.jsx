@@ -29,24 +29,17 @@ import {
 const CONTACT_ITEMS = [
   {
     type: "General Inquiry",
-    value: "info@urbanlandscape.in",
+    value: "contact@urbanlandscape.in",
     desc: "For general questions & inquiries.",
     icon: Mail,
-    href: "mailto:info@urbanlandscape.in",
+    href: "mailto:contact@urbanlandscape.in",
   },
   {
-    type: "Direct Contact",
-    value: "sharadchaurasia@urbanlandscape.in",
-    desc: "Sharad Chaurasia — Founder & Principal",
+    type: "Direct Consultation",
+    value: "contact@urbanlandscape.in",
+    desc: "Principal Architects & Design Team",
     icon: Mail,
-    href: "mailto:sharadchaurasia@urbanlandscape.in",
-  },
-  {
-    type: "Direct Contact",
-    value: "prachichaurasia@urbanlandscape.in",
-    desc: "Prachi Chaurasia — Design Lead",
-    icon: Mail,
-    href: "mailto:prachichaurasia@urbanlandscape.in",
+    href: "mailto:contact@urbanlandscape.in",
   },
   {
     type: "Direct Communication",
@@ -339,7 +332,7 @@ export default function Contact() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {/* Box 1: General Inquiry */}
               <a
-                href="mailto:info@urbanlandscape.in"
+                href="mailto:contact@urbanlandscape.in"
                 className="bg-[#1A1A1A] text-white p-6 sm:p-7 rounded-2xl border border-white/10 shadow-xl flex flex-col justify-between hover:border-[#A14732]/60 hover:bg-[#202020] transition-all duration-300 group"
               >
                 <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#A14732] mb-5 group-hover:scale-110 group-hover:bg-[#A14732]/20 transition-transform">
@@ -350,7 +343,7 @@ export default function Contact() {
                     General Inquiries
                   </p>
                   <p className="text-base font-bold text-white tracking-tight mt-1 truncate group-hover:text-white">
-                    info@urbanlandscape.in
+                    contact@urbanlandscape.in
                   </p>
                   <p className="text-xs text-neutral-400 font-light mt-1">
                     Questions, press & initial brief
@@ -360,7 +353,7 @@ export default function Contact() {
 
               {/* Box 2: Direct Leadership Emails */}
               <a
-                href="mailto:sharadchaurasia@urbanlandscape.in"
+                href="mailto:contact@urbanlandscape.in"
                 className="bg-[#1A1A1A] text-white p-6 sm:p-7 rounded-2xl border border-white/10 shadow-xl flex flex-col justify-between hover:border-[#A14732]/60 hover:bg-[#202020] transition-all duration-300 group"
               >
                 <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#A14732] mb-5 group-hover:scale-110 group-hover:bg-[#A14732]/20 transition-transform">
@@ -371,10 +364,10 @@ export default function Contact() {
                     Direct Contact
                   </p>
                   <p className="text-base font-bold text-white tracking-tight mt-1 truncate group-hover:text-white">
-                    sharadchaurasia@urbanlandscape.in
+                    contact@urbanlandscape.in
                   </p>
                   <p className="text-xs text-neutral-400 font-light mt-1 truncate">
-                    prachichaurasia@urbanlandscape.in
+                    Leadership & Design Team
                   </p>
                 </div>
               </a>

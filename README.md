@@ -98,54 +98,6 @@ Run a script/server	uv run uvicorn server:app --reload
 
 ---
 
-## 4. Frontend setup
-
-```bash
-cd frontend
-yarn install
-```
-
-### Environment (`frontend/.env`)
-
-```
-REACT_APP_BACKEND_URL=http://localhost:8001
-WDS_SOCKET_PORT=443
-```
-
-If the backend is on a different host or port, change `REACT_APP_BACKEND_URL` (no trailing slash).
-
-### Run
-
-```bash
-yarn start
-```
-
-Frontend opens at `http://localhost:3000`.
-
----
-
-## 5. First-time login
-
-Once both services are running:
-
-1. Visit `http://localhost:3000`
-2. Open the "More" menu → **Admin Login** (or go to `/login` → Admin tab)
-3. Sign in with the seeded credentials (see `backend/.env`):
-   - **Email:** `admin@urbanlandscape.in`
-   - **Password:** `Admin@2026`
-4. You will land at `/admin`. From there:
-   - **Users** → review pending client/contractor applications, click **Approve** to auto-generate a user code + temp password (also emailed via Resend)
-   - **Projects** → create a project and assign it to an approved client + contractor
-   - **CMS** → edit the hero, add signature projects & testimonials — these render on the homepage
-
-**Client / Contractor workflow:**
-1. Visitor registers at `/join/client` or `/join/contractor`
-2. Application appears as *pending* in the admin **Users** tab
-3. Admin approves → applicant receives credentials by email
-4. Applicant signs in at `/client/login` or `/contractor/login`
-
----
-
 ## 6. Feature summary
 
 ### Public marketing site

@@ -525,7 +525,7 @@ export default function Home() {
             </p>
 
             <div className="mt-10 space-y-6">
-              <ContactInfo icon={Mail} label="Direct Email Inquiry" value="sharadchaurasia@urbanlandscape.in" />
+              <ContactInfo icon={Mail} label="Direct Email Inquiry" value="contact@urbanlandscape.in" />
               <ContactInfo icon={PhoneCall} label="Architect Helpline" value="+91 98276 02453" />
               <ContactInfo icon={MapPin} label="Design Studio Location" value="Vijay Nagar, Indore, Madhya Pradesh" />
             </div>

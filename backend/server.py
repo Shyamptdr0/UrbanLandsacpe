@@ -1215,33 +1215,36 @@ async def contractor_stats(user=Depends(require_roles("contractor", "admin"))):
 # ---- Startup: seed admin + init storage ----
 @app.on_event("startup")
 async def startup():
-    admin_email = os.environ.get("ADMIN_EMAIL", "admin@urbanlandscape.in")
-    admin_password = os.environ.get("ADMIN_PASSWORD", "Admin@2026")
-    existing = await db.users.find_one({"email": admin_email})
-    if not existing:
-        await db.users.insert_one({
-            "id": new_id(),
-            "role": "admin",
-            "status": "approved",
-            "user_code": "AD-0001",
-            "password_hash": hash_pw(admin_password),
-            "full_name": "Urban Landscape Admin",
-            "email": admin_email,
-            "phone": "",
-            "created_at": now_iso(),
-        })
-        logging.info(f"Seeded admin: {admin_email}")
-    else:
-        # Always sync password from .env so changes take effect on restart
-        await db.users.update_one(
-            {"email": admin_email},
-            {"$set": {
-                "password_hash": hash_pw(admin_password),
+    admin_email = os.environ.get("ADMIN_EMAIL")
+    admin_password = os.environ.get("ADMIN_PASSWORD")
+    if admin_email and admin_password:
+        existing = await db.users.find_one({"email": admin_email})
+        if not existing:
+            await db.users.insert_one({
+                "id": new_id(),
                 "role": "admin",
                 "status": "approved",
-            }}
-        )
-        logging.info(f"Admin password synced from .env for: {admin_email}")
+                "user_code": "AD-0001",
+                "password_hash": hash_pw(admin_password),
+                "full_name": "Urban Landscape Admin",
+                "email": admin_email,
+                "phone": "",
+                "created_at": now_iso(),
+            })
+            logging.info(f"Seeded admin: {admin_email}")
+        else:
+            # Always sync password from .env so changes take effect on restart
+            await db.users.update_one(
+                {"email": admin_email},
+                {"$set": {
+                    "password_hash": hash_pw(admin_password),
+                    "role": "admin",
+                    "status": "approved",
+                }}
+            )
+            logging.info(f"Admin password synced from .env for: {admin_email}")
+    else:
+        logging.warning("ADMIN_EMAIL or ADMIN_PASSWORD not configured in .env; skipping admin initialization.")
     try:
         init_storage()
         logging.info("Storage initialized")

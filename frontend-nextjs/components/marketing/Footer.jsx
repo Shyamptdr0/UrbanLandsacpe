@@ -62,7 +62,7 @@ export default function Footer() {
             </li>
             <li className="flex items-center gap-2">
               <Mail size={15} className="text-terracotta shrink-0" />
-              <a href="mailto:sharadchaurasia@urbanlandscape.in" className="hover:text-terracotta transition-colors">sharadchaurasia@urbanlandscape.in</a>
+              <a href="mailto:contact@urbanlandscape.in" className="hover:text-terracotta transition-colors">contact@urbanlandscape.in</a>
             </li>
             <li className="flex items-center gap-2">
               <PhoneCall size={15} className="text-terracotta shrink-0" />
